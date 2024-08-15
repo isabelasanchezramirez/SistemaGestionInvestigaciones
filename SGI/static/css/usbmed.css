@@ -1,0 +1,12 @@
+.img-responsive {
+	max-width: 100%; 
+	display:block; 
+	height: auto;
+}
+
+.t-Body{
+  background: #faf5f1 url(/SGI/static/img/principales/fondo.jpg) top center;
+  background-repeat: repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
