@@ -18,9 +18,6 @@ from vista.vistaInvestigadores import vistaInvestigadores
 
 
 
-
-
-
 app = Flask(__name__)
 app.register_blueprint(vistaInicio)  # Registra el Blueprint
 app.register_blueprint(vistaInvestigaciones)  
@@ -44,7 +41,7 @@ def login():
     if request.method == 'GET':
         pass
     if request.method == 'POST':
-        email=markupsafe.escape(request.form['txtEmail'])
+        email=markupsafe.escape(request.form['txtId'])
         contrasena=markupsafe.escape(request.form['txtContrasena'])
         bot=markupsafe.escape(request.form['btnLogin'])
         datosEntidad = {'email': email, 'contrasena': contrasena}
