@@ -62,7 +62,7 @@ def login():
 @app.route('/cerrarSesion')
 def cerrarSesion():
     #session.clear()
-    return redirect('login')
+    return redirect('login.html')
 
 if __name__ == '__main__':
     # Corre la aplicaciรณn en el modo debug, lo que permitirรก 

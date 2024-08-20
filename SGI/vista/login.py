@@ -6,7 +6,7 @@ from modelo.Entidad import Entidad
 from controlador.ControlEntidad import ControlEntidad
 
 
-from vista.inicio import inicio
+
 from vista.inicio import vistaInicio
 from vista.login import login
 from vista.vistaEstudiante import vistaEstudiante
@@ -67,7 +67,7 @@ def login():
 @app.route('/cerrarSesion')
 def cerrarSesion():
     #session.clear()
-    return redirect('login')
+    return redirect('login.html')
 
 if __name__ == '__main__':
     # Corre la aplicaciรณn en el modo debug, lo que permitirรก 
