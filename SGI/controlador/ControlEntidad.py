@@ -7,30 +7,42 @@ BASE_URL = f"http://190.217.58.246:5184/api/{PROJECT_NAME}/procedures/execute"  
 
 class ControlEntidad:
 
-    def validarIngreso(email, contrasena):#,role):
+    def validarIngreso(email, contrasena): # ,role):
         table_name = "usuario"  # Reemplaza con el nombre correcto de tu tabla de usuarios
         condition = {
-            "username": email,
-            "password": contrasena#,
-            #"role": role
+            "email": str(email),
+            "contrasena": str(contrasena)  # , "role": role
         }
-        select_columns = ["email"]#, "role"]
+        select_columns = ["email"]  # , "role"]
 
         payload = {
-        "procedure": "select_json_entity",
-        "parameters": {
-            "table_name": table_name,
-            "where_condition": condition,
-            "select_columns": select_columns
+            "procedure": "select_json_entity",
+            "parameters": {
+                "table_name": table_name,
+                "where_condition": condition,
+                "select_columns": select_columns
             }
         }
+        
         response = requests.post(BASE_URL, json=payload)
-        result = response.json()
-
-        if result.get("data"):
-            return True
+        # Verifica si la respuesta es exitosa (código 200)
+        if response.status_code == 200:
+            try:
+                result = response.json()
+                print(result)  # Muestra el resultado JSON para depurar
+                if result.get("data"):
+                    return True
+                else:
+                    return False
+            except ValueError as e:
+                print("Error al decodificar JSON:", e)
+                print("Respuesta del servidor:", response.text)
+                return False
         else:
+            print(f"Error en la solicitud: {response.status_code}")
+            print("Respuesta del servidor:", response.text)
             return False
+
 
     def insert_data(table_name, data):
         payload = {
